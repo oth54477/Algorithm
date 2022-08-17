@@ -6,6 +6,7 @@ for t in range(1, int(input()) + 1):
     print(f'#{t}')
     n = int(input())
     cnt = 0
+    # 리스트 안에 n개의 빈 리스트 생성
     arr = [[] for _ in range(n)]
 
     while cnt < n:

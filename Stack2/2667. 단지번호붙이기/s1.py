@@ -11,8 +11,13 @@ def dfs(row, col):
         ):
             if apt_info[next_row][next_col] > 0:
                 cnt_arr[cnt] += 1
-
-            dfs(next_row, next_col)
+                dfs(next_row, next_col)
+            else:
+                print(cnt_arr)
+                print(cnt)
+                if cnt_arr[cnt] != 0:
+                    cnt += 1
+                dfs(next_row, next_col)
 
     # for next_v in graph[v]:
     #     if not visited[next_v]:

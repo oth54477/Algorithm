@@ -9,3 +9,6 @@ for i in range(1, n - 1):
         pop_arr.append(i)
 
 print(pop_arr)
+
+
+# 모르겠다.

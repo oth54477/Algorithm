@@ -1,6 +1,5 @@
 switch_n = int(input())
 switch_status = list(map(int, input().split()))
-
 student_n = int(input())
 
 

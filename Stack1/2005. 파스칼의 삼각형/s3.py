@@ -7,6 +7,7 @@ def pascal(stack):
     global n
     new_stack = []
     old_num = 0
+    # stack이 빈경우 -> [1] (n이 1)
     if not stack:
         new_stack = [1]
     else:

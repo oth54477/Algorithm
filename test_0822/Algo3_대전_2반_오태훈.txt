@@ -1,0 +1,21 @@
+3-1. 스택의 특성을 3가지 이상 서술하시오.
+
+답 ) 
+    1. 후입 선출인 LIFO(Last-In First-Out)구조이다.
+    2. push를 톨해 값을 넣으면 (가장 뒤에 들어간다.)top이 한 칸 움직이며 원소를 가리킨디.
+    3. pop을 사용하면 top가 가리키고 있는 원소(가장 마지막에 push한 원소)를 제거와 동시에 반환한다.
+    4. Python에서는 list를 통해 스택을 쉽게 구현할 수 있다. (push는 append() 매서드 사용, pop은 pop()매서드 사용)
+
+3-2. 다음과같이빈스택이있다. 여기에주어진연산이이뤄지고난후, 가장먼저저장된값부터Top 이가리키는원소까지순서대로적으시오. (두번째push까지의예) A B
+ 
+답 ) A D C F A
+
+    push(A)  -> A
+    push(B)  -> A B
+    pop()    -> A
+    push(D)  -> A D
+    push(C)  -> A D C
+    push(F)  -> A D C F
+    push(E)  -> A D C F E
+    pop()    -> A D C F
+    push(A)  -> A D C F A

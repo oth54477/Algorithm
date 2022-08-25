@@ -29,13 +29,13 @@ d = [
     [0, -2],
     [0, 2],
 ]
-result = []
+answer = []
 for place in places:
     breaker = False
     # 모두 탐색
     for row in range(5):
         if breaker:
-            result.append(0)
+            answer.append(0)
             break
         for col in range(5):
             if breaker:
@@ -53,22 +53,15 @@ for place in places:
                             # 붙어있으면 지키지 x
                             if btwn == 1:
                                 breaker = True
-                                # print(1)
                                 break
                             # 칸막이 조사
                             elif i == 8:
                                 if place[nr][nc - 1] != 'X':
                                     breaker = True
-                                    # print(2 - 1)
-                                    # print(row, col)
-                                    # print(nr, nc)
                                     break
                             elif i == 9:
                                 if place[nr][nc + 1] != 'X':
                                     breaker = True
-                                    # print(2 - 2)
-                                    # print(row, col)
-                                    # print(nr, nc)
                                     break
 
                         # 양 옆?
@@ -77,22 +70,15 @@ for place in places:
                             # 붙어있으면 지키지 x
                             if abs(row - nr) == 1:
                                 breaker = True
-                                # print(3)
                                 break
                             # 칸막이 조사
                             elif i == 10:
                                 if place[nr + 1][nc] != 'X':
                                     breaker = True
-                                    # print(4 - 1)
-                                    # print(row, col)
-                                    # print(nr, nc)
                                     break
                             elif i == 11:
                                 if place[nr - 1][nc] != 'X':
                                     breaker = True
-                                    # print(4 - 2)
-                                    # print(row, col)
-                                    # print(nr, nc)
                                     break
 
                         # 대각선
@@ -101,32 +87,22 @@ for place in places:
                             if i == 4:
                                 if place[nr][nc + 1] != 'X' or place[nr + 1][nc] != 'X':
                                     breaker = True
-                                    # print(row, col)
-                                    # print(nr, nc)
-                                    # print(5)
                                     break
                             elif i == 5:
                                 if place[nr][nc - 1] != 'X' or place[nr - 1][nc] != 'X':
                                     breaker = True
-                                    # print(6)
-                                    # print(row, col)
-                                    # print(nr, nc)
                                     break
                             elif i == 6:
                                 if place[nr][nc - 1] != 'X' or place[nr + 1][nc] != 'X':
                                     breaker = True
-                                    # print(7)
-                                    # print(row, col)
-                                    # print(nr, nc)
                                     break
                             elif i == 7:
                                 if place[nr][nc + 1] != 'X' or place[nr - 1][nc] != 'X':
                                     breaker = True
-                                    # print(8)
-                                    # print(row, col)
-                                    # print(nr, nc)
                                     break
+    if breaker:
+        answer.append(0)
     else:
-        result.append(1)
+        answer.append(1)
 
-print(result)
+print(answer)

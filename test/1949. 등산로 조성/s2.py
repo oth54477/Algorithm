@@ -16,6 +16,9 @@ def dfs(row, col):
     for dr in d:
         nr, nc = row + dr[0], col + dr[1]
 
+        if len(cnt_arr) > 2 and cnt_arr[-1] != cnt_arr[-2]:
+            
+
         if (
             0 <= nr < n
             and 0 <= nc < n
@@ -26,7 +29,6 @@ def dfs(row, col):
             dfs(nr, nc)
         elif len(cnt_arr) > len(max_r):
             max_r = cnt_arr
-        cnt_arr = []
 
 
 d = [[-1, 0], [1, 0], [0, -1], [0, 1]]

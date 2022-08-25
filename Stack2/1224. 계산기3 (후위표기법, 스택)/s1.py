@@ -1,6 +1,3 @@
-import sys
-
-sys.stdin = open('input.txt')
 # 우선순위 설정
 priority = {'*': 3, '/': 3, '+': 2, '-': 2, '(': 1, ')': 1}
 for t in range(1, 11):

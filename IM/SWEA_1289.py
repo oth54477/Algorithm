@@ -12,4 +12,4 @@ for t in range(1, int(input()) + 1):
         elif old_char != char:
             cnt += 1
         old_char = char
-    print(cnt)
+    print(f'#{t} {cnt}')

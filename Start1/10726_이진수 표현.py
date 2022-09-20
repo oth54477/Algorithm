@@ -6,11 +6,11 @@ for t in range(1, int(input()) + 1):
 
     m = format(m, 'b')
     result = 'ON'
-    if n > len(m):
+    chk = m[-n:]
+    if n > len(chk):
         result = 'OFF'
-    else:
-        if '0' in m[-n:]:
-            result = 'OFF'
+    elif '0' in chk:
+        result = 'OFF'
     print(f'#{t} {result}')
     # cnt, result = 0, 'OFF'
     # if n <= len(m):

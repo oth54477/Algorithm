@@ -14,4 +14,4 @@ for t in range(1, int(input()) + 1):
             if chk2 in arr:
                 result = i
                 break
-    print(result)
+    print(f'#{t} {result}')

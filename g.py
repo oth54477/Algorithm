@@ -109,27 +109,6 @@ def ratio_7(num):
     return result
 
 
-def chk(line):
-    cnt, chk, result = 0, 0, 0
-    l = len(line)
-    ll = l // 8
-    for i in range(0, l, ll):
-        cnt += 1
-        bin_str = line[i : i + ll]
-        print(t, bin_str)
-        if len(bin_str) > 7:
-            bin_str = ratio_7(bin_str)
-        num = table[bin_str]
-        if cnt % 2 == 0:
-            chk += num
-        else:
-            chk += num * 3
-        result += num
-    if chk % 10 != 0:
-        result = 0
-    return result
-
-
 for t in range(1, int(input()) + 1):
     n, m = map(int, input().split())
     real_line = set()
@@ -156,11 +135,4 @@ for t in range(1, int(input()) + 1):
                     break
                 else:
                     cnt += 1
-    for line in result:
-        line = format(int(line, 16), 'b').rstrip('0')
-        line = ('0' * (7 - (len(line) % 7))) + line
-
-    result = chk(line)
-    r[t] = result
-    print(f'#{t} {result}')
-    print(r)
+    print(result)

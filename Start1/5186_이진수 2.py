@@ -5,9 +5,10 @@ from __future__ import division
 
 
 def f_bin(d):
-    division()
+    int_d = int(d[2:])
+    while d != 0:
+        int_d, r = divmod(d, 2)
 
 
 for t in range(1, int(input()) + 1):
     d = input()
-    print(division(10, 2))

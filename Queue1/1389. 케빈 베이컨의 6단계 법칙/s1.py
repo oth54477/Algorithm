@@ -14,3 +14,7 @@ for _ in range(m):
     for i in range(n):
         visited = [[False] * (n + 1)]
         bfs(i)
+
+a = list(range(100000000000))
+for 1 in a:
+    print(1)

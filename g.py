@@ -1,27 +1,166 @@
-def paint(idx, line):
-    if idx % 2 == 0:
-        cnt1 = format(int(('0b' + line), 2) ^ 170, 'b').count('1')
-        cnt2 = format(int(('0b' + line), 2) ^ 85, 'b').count('1')
-    else:
-        cnt1 = format(int(('0b' + line), 2) ^ 85, 'b').count('1')
-        cnt2 = format(int(('0b' + line), 2) ^ 170, 'b').count('1')
-    return cnt1, cnt2
+# num = '00000011001111'
+# r = len(num) // 7
+# result = ''
+# cnt_0, cnt_1 = 0, 0
+# for n in num:
+#     if n == '1':
+#         cnt_1 += 1
+#         result += '0' * (cnt_0 // r)
+#         cnt_0 = 0
+#     else:
+#         cnt_0 += 1
+#         result += '1' * (cnt_1 // r)
+#         cnt_1 = 0
+# result += '0' * (cnt_0 // r) + '1' * (cnt_1 // r)
+# print(result)
+
+# n = 18
+# arr = [input().strip().strip('0') for _ in range(n)]
+# arr = set(arr)
+# max_l = 0
+# for i in arr:
+#     l = len(i)
+#     if l > max_l:
+#         max_l = l
+#         max_i = i
 
 
-n, m = map(int, input().split())
-board = [input().replace('W', '1').replace('B', '0') for _ in range(n)]
-min_num1 = n * m
-min_num2 = n * m
-for k in range(n - 8 + 1):
-    for j in range(m - 8 + 1):
-        cnt1, cnt2 = 0, 0
-        for i in range(8):
-            num1, num2 = paint(i, board[k + i][j : j + 8])
-            cnt1 += num1
-            cnt2 += num2
-        if min_num1 >= cnt1:
-            min_num1 = cnt1
-        if min_num2 >= cnt2:
-            min_num2 = cnt2
+# for t in range(1, int(input()) + 1):
+#     n, m = map(int, input().split())
+#     real_line = set()
+#     for _ in range(1):
+#         line = input().strip()
+#         if not line.isnumeric():
+#             arr = line.split('0')
+#             cnt = 0
+#             result = ''
+#             for i in arr:
+#                 if i:
+#                     result += i
+#                 else:
+#                     cnt += 1
+#                 if cnt > 1:
+#                     real_line.add(result)
+#                     result = ''
+#                     cnt = 0
+#     real_line -= {''}
+table = {
+    '0001101': 0,
+    '0011001': 1,
+    '0010011': 2,
+    '0111101': 3,
+    '0100011': 4,
+    '0110001': 5,
+    '0101111': 6,
+    '0111011': 7,
+    '0110111': 8,
+    '0001011': 9,
+}
 
-print(min(min_num1, min_num2))
+# for t in range(1, int(input()) + 1):
+#     n, m = map(int, input().split())
+#     real_line = set()
+#     for _ in range(n):
+#         line = input()[:m]
+#         line = format(int(line, 16), 'b').strip('0')
+#         if line:
+#             real_line.add(line)
+#     result = set()
+#     for line in real_line:
+#         cnt = 1
+#         while True:
+#             if line[-7*cnt :-1] in table:
+#                 r = 7 * cnt
+#                 break
+#             else:
+#                 cnt += 1
+#         result.add(line[]
+
+# arr = set([input()[:m].strip('0') for _ in range(n)])
+# arr -= {''}
+# result = set()
+# for line in arr:
+#     for line2 in arr:
+#         if line in line2:
+#             # arr -= {line2}
+#             new_line = line2.replace(line, '').strip('0')
+#             if new_line:
+#                 result.add(new_line)
+#             else:
+#                 result.add(line)
+# print(result)
+
+
+def ratio_7(num):
+    # print(num)
+    r = len(num) // 7
+    result = ''
+    cnt_0, cnt_1 = 0, 0
+    for n in num:
+        if n == '1':
+            cnt_1 += 1
+            result += '0' * (cnt_0 // r)
+            cnt_0 = 0
+        else:
+            cnt_0 += 1
+            result += '1' * (cnt_1 // r)
+            cnt_1 = 0
+    result += '0' * (cnt_0 // r) + '1' * (cnt_1 // r)
+    return result
+
+
+def chk(line):
+    cnt, chk, result = 0, 0, 0
+    l = len(line)
+    ll = l // 8
+    for i in range(0, l, ll):
+        cnt += 1
+        bin_str = line[i : i + ll]
+        print(t, bin_str)
+        if len(bin_str) > 7:
+            bin_str = ratio_7(bin_str)
+        num = table[bin_str]
+        if cnt % 2 == 0:
+            chk += num
+        else:
+            chk += num * 3
+        result += num
+    if chk % 10 != 0:
+        result = 0
+    return result
+
+
+for t in range(1, int(input()) + 1):
+    n, m = map(int, input().split())
+    real_line = set()
+    for _ in range(n):
+        line = input()[:m]
+        line = format(int(line, 16), 'b').strip('0')
+        if line:
+            real_line.add(line)
+    result = set()
+    print(real_line)
+    for line in real_line:
+        while line:
+            print(line)
+            cnt = 1
+            while True:
+                print(line[-7 * cnt :])
+                if ratio_7(line[-7 * cnt :]) in table:
+                    r = 7 * 8 * cnt
+                    new_line = line[-r:]
+                    if len(new_line) % 7 != 0:
+                        new_line = ('0' * (7 - (len(new_line) % 7))) + new_line
+                    result.add(new_line)
+                    line = line[:-r].strip('0')
+                    break
+                else:
+                    cnt += 1
+    for line in result:
+        line = format(int(line, 16), 'b').rstrip('0')
+        line = ('0' * (7 - (len(line) % 7))) + line
+
+    result = chk(line)
+    r[t] = result
+    print(f'#{t} {result}')
+    print(r)

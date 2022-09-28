@@ -1,72 +1,42 @@
-# import time
-
-# arr = [0, 4, 1, 3, 1, 2, 4, 1]
-
-# # 버블 정렬
-# start_time = time.time()
-# for i in range(len(arr) - 1, 0, -1):
-#     for idx in range(i):
-#         if arr[idx] > arr[idx + 1]:
-#             arr[idx], arr[idx + 1] = arr[idx + 1], arr[idx]
-# print('time :', time.time() - start_time)
-
-# print(arr)
+from collections import deque
 
 
-# arr2 = [0, 4, 1, 3, 1, 2, 4, 1]
-# # 카운팅 정렬
-# start_time = time.time()
-# max_v = 0
-# temp = [0] * (len(arr2))
-# # 1. counter에 original 원소의 빈도수 담기
-# for v in arr2:
-#     if max_v < v:
-#         max_v = v
-# counts = [0] * (max_v + 1)
-# # 2. 누적(counter 업데이트)
-# for i in arr2:
-#     counts[i] += 1
-# # 3. result 생성
-# for i in range(1, max_v + 1):
-#     counts[i] += counts[i - 1]
-# # 4. result에 정렬하기
-# for j in arr2[::-1]:
-#     counts[j] -= 1
-#     temp[counts[j]] = j
-# print('time :', time.time() - start_time)
-# print(temp)
-# 문자열 뒤집기
+def bfs(row, col):
+    visited = [[False] * m for _ in range(n)]
+    visited[row][col] = True
 
-# s = 'abcdefgf'
-# result = ''
-# for i in range(len(s) - 1, -1, -1):
-#     result += s[i]
-
-# print(result)
-
-# s = 'abcdefg'
-# s = list(s)
-# cnt = len(s) - 1
-# print(s)
-# for i in range(len(s) - 1, len(s) // 2, -1):
-#     s[i], s[i - cnt] = s[i - cnt], s[i]
-#     cnt -= 2
-
-# print(s)
+    v = [row, col, 1]
+    queue = deque([v])
+    result = set()
+    while queue:
+        row, col, cnt = queue.popleft()
+        if cnt == l + 1:
+            break
+        result.add((row, col))
+        for d in direction[arr[row][col]]:
+            nr, nc = row + dr[d], col + dc[d]
+            if (
+                0 <= nr < n
+                and 0 <= nc < m
+                and not visited[nr][nc]
+                and arr[nr][nc] != 0
+                and arr[nr][nc] in check[d]
+            ):
+                visited[nr][nc] = True
+                queue.append([nr, nc, cnt + 1])
+    return len(result)
 
 
-# 이진 탐색
+# 델타이동을 위한 변수
+dr = [-1, 1, 0, 0]  # 상 하 좌 우
+dc = [0, 0, -1, 1]
+# 파이프의 진행 가능방향
+direction = [0, [0, 1, 2, 3], [0, 1], [2, 3], [0, 3], [1, 3], [1, 2], [0, 2]]
+# 다음 위치로 이동할 수 있는지 체크하기 위한 리스트
+check = {0: (1, 2, 5, 6), 1: (1, 2, 4, 7), 2: (1, 3, 4, 5), 3: (1, 3, 6, 7)}
 
+for t in range(1, int(input()) + 1):
+    n, m, r, c, l = map(int, input().split())
+    arr = [list(map(int, input().split())) for _ in range(n)]
 
-def binarySearch(a, n, key):
-    start = 0
-    end = n - 1
-    while start <= end:
-        middle = (start + end) // 2
-        if a[middle] == key:
-            return True
-        elif a[middle] > key:
-            end = middle - 1
-        else:
-            start = middle + 1
-        return False
+    print(f'#{t} {bfs(r, c)}')

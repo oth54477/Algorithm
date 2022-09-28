@@ -1,16 +1,21 @@
+from itertools import combinations
+
 for t in range(1, int(input()) + 1):
-    n, m = map(int, input().split())
-
+    n = int(input())
     arr = [list(map(int, input().split())) for _ in range(n)]
+    result = []
+    for food in combinations(range(n), n // 2):
+        taste_a, taste_b = 0, 0
+        tmp = []
+        for i in range(n):
+            if i not in food:
+                tmp.append(i)
+        for row, col in combinations(food, 2):
+            taste_a += arr[row][col] + arr[col][row]
 
-    max_f = 0
-    for i in range(n - m + 1):
-        for j in range(n - m + 1):
-            sum_f = 0
-            for row in range(i, m + i):
-                for col in range(j, m + j):
-                    sum_f += arr[row][col]
-            if max_f < sum_f:
-                max_f = sum_f
+        for r, c in combinations(tmp, 2):
+            taste_b += arr[r][c] + arr[c][r]
 
-    print(f'#{t} {max_f}')
+        result.append(abs(taste_a - taste_b))
+
+    print(f'#{t} {min(result)}')

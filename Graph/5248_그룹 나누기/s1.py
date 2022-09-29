@@ -20,4 +20,5 @@ for t in range(1, int(input()) + 1):
                 parent[x_root] = y_root
     for i in range(1, n+1):
         parent[i] = find_set(i)
+    print(parent)
     print(f'#{t} {len(set(parent)) - 1}')
